@@ -9,6 +9,9 @@ const DEFAULT_OPTIONS = {
 
 class Pagination {
     constructor(options = DEFAULT_OPTIONS) {
+        if (options.threshold < 200) {
+            throw new Error('INVALID_THRESHOLD')
+        }
         this.request = new Request()
         this.maxRetries = options.maxRetries
         this.retryTimeout = options.retryTimeout

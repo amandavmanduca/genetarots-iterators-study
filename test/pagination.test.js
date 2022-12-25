@@ -16,6 +16,17 @@ describe('Pagination tests', () => {
 
     describe('#Pagination', () => {
 
+        describe('#valid options', () => {
+            const INVALID_OPTIONS = {
+                maxRetries: 4,
+                retryTimeout: 1000,
+                maxRequestTimeout: 1000,
+                threshold: 199
+            }
+
+            assert.throws(() => new Pagination(INVALID_OPTIONS), Error)   
+        })
+
         describe('#handleRequest', () => {
             it('should retry a request twice before throwing an exception and validate request params', async () => {
                 const expectedCallCount = 2
